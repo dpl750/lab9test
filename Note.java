@@ -32,6 +32,35 @@ public class Note {
     public void setContent(String content) {
         this.content = content;
     }
+    public static void viewAllNotes() {
+        if (notes.isEmpty()) {
+            System.out.println("No notes available.");
+        } else {
+            System.out.println("All Notes:");
+            for (Note note : notes) {
+                System.out.println("ID: " + note.getId());
+                System.out.println("Title: " + note.getTitle());
+                System.out.println("Content: " + note.getContent());
+                System.out.println();
+            }
+        }
+    }
+    public static void deleteNoteById(int id) {
+        Iterator<Note> iterator = notes.iterator();
+        boolean found = false;
+        while (iterator.hasNext()) {
+            Note note = iterator.next();
+            if (note.getId() == id) {
+                iterator.remove();
+                found = true;
+                System.out.println("Note with ID " + id + " deleted successfully.");
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Note with ID " + id + " not found.");
+        }
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
